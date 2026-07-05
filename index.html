@@ -412,6 +412,271 @@
     text-align:right;
   }
 
+  /* ---------- View transitions ---------- */
+  .view.active {
+    animation: viewIn 0.32s cubic-bezier(.34,1.1,.64,1);
+  }
+  @keyframes viewIn {
+    from { opacity: 0; transform: translateY(10px) scale(0.99); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  .tab svg, .tab span { transition: transform 0.25s ease; }
+  .tab.active svg { transform: translateY(-2px); }
+
+  /* ---------- Fruit balance ---------- */
+  .fruit-balance {
+    display:flex;
+    align-items:center;
+    gap: 5px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--sage-bright);
+    background: var(--surface);
+    padding: 4px 10px 4px 8px;
+    border-radius: 999px;
+    margin-top: 3px;
+  }
+  .fruit-balance .fb-icon { font-size: 13px; }
+  .fruit-pop {
+    animation: fruitPop 0.4s ease;
+  }
+  @keyframes fruitPop {
+    0% { transform: scale(1); }
+    35% { transform: scale(1.25); color: var(--rose); }
+    100% { transform: scale(1); }
+  }
+
+  /* ---------- Plant picker strip (Today tab) ---------- */
+  .grow-picker {
+    margin-top: 4px;
+    z-index: 1;
+  }
+  .grow-picker-label {
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--lavender-dim);
+    margin-bottom: 8px;
+    display:block;
+  }
+  .grow-picker-row {
+    display:flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+  }
+  .grow-picker-row::-webkit-scrollbar { display:none; }
+  .grow-chip {
+    flex-shrink:0;
+    width: 54px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap: 4px;
+    padding: 6px 4px;
+    border-radius: 12px;
+    border: 2px solid transparent;
+    cursor:pointer;
+    background: var(--surface);
+    transition: border-color 0.2s, transform 0.15s;
+  }
+  .grow-chip:hover { transform: translateY(-2px); }
+  .grow-chip.selected { border-color: var(--sage-bright); background: #3a3350; }
+  .grow-chip .gc-name {
+    font-family: var(--font-mono);
+    font-size: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--lavender-dim);
+    max-width: 50px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+  }
+  .grow-chip.selected .gc-name { color: var(--sage-bright); }
+
+  /* ---------- Garden tab ---------- */
+  .garden-grid {
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    overflow-y: auto;
+    padding-bottom: 20px;
+    margin-top: 12px;
+  }
+  .garden-card {
+    background: var(--surface);
+    border-radius: 16px;
+    padding: 12px 10px 14px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    position:relative;
+    border: 2px solid transparent;
+    transition: border-color 0.2s;
+  }
+  .garden-card.active-grow { border-color: var(--sage-bright); }
+  .garden-card .gname {
+    font-family: var(--font-display);
+    font-size: 13.5px;
+    margin-top: 4px;
+  }
+  .garden-card .gstage {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    color: var(--lavender-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-top: 2px;
+  }
+  .garden-card .gbar {
+    width: 100%;
+    height: 5px;
+    background: var(--surface-hi);
+    border-radius: 3px;
+    overflow:hidden;
+    margin-top: 8px;
+  }
+  .garden-card .gbar-fill {
+    height:100%;
+    background: var(--sage);
+    border-radius: 3px;
+    transition: width 0.4s ease;
+  }
+  .fruit-badge {
+    position:absolute;
+    top: 8px; right: 8px;
+    background: var(--rose);
+    color: #3a1f1c;
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    font-weight: 600;
+    padding: 2px 6px;
+    border-radius: 999px;
+  }
+  .harvest-btn {
+    margin-top: 8px;
+    width:100%;
+    background: var(--rose);
+    color: #3a1f1c;
+    border:none;
+    border-radius: 10px;
+    padding: 7px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 700;
+    cursor:pointer;
+    transition: background 0.2s, transform 0.1s;
+  }
+  .harvest-btn:hover { background: #edbcb4; }
+  .harvest-btn:active { transform: scale(0.97); }
+  .select-grow-btn {
+    margin-top: 8px;
+    width:100%;
+    background: var(--surface-hi);
+    color: var(--cream);
+    border:none;
+    border-radius: 10px;
+    padding: 7px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 700;
+    cursor:pointer;
+    transition: background 0.2s;
+  }
+  .select-grow-btn:hover { background: #4b4560; }
+  .select-grow-btn.is-active { background: var(--sage); color:#16261a; }
+  .garden-empty {
+    color: var(--lavender-dim);
+    font-size: 14px;
+    text-align:center;
+    margin-top: 60px;
+    line-height: 1.5;
+  }
+
+  /* ---------- Shop tab ---------- */
+  .shop-scroll { overflow-y:auto; padding-bottom: 20px; margin-top: 10px; }
+  .shop-section-title {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--rose);
+    margin: 14px 0 10px;
+    display:block;
+  }
+  .mystery-card {
+    background: linear-gradient(135deg, var(--surface-hi), var(--surface));
+    border: 1px dashed var(--lavender-dim);
+    border-radius: 18px;
+    padding: 16px;
+    display:flex;
+    align-items:center;
+    gap: 14px;
+    margin-bottom: 4px;
+  }
+  .mystery-card .mbox-icon { font-size: 34px; }
+  .mystery-card .mbox-info { flex:1; }
+  .mystery-card .mbox-title {
+    font-family: var(--font-display);
+    font-size: 15px;
+    margin-bottom: 3px;
+  }
+  .mystery-card .mbox-desc {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--lavender-dim);
+    line-height: 1.4;
+  }
+  .buy-btn {
+    background: var(--sage);
+    color: #16261a;
+    border:none;
+    border-radius: 10px;
+    padding: 9px 14px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    cursor:pointer;
+    white-space:nowrap;
+    transition: background 0.2s, transform 0.1s;
+  }
+  .buy-btn:hover { background: var(--sage-bright); }
+  .buy-btn:active { transform: scale(0.96); }
+  .buy-btn:disabled { background: #4b4560; color: var(--lavender-dim); cursor:default; }
+  .shop-grid {
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .shop-card {
+    background: var(--surface);
+    border-radius: 16px;
+    padding: 12px 10px 12px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+  }
+  .shop-card .sname {
+    font-family: var(--font-display);
+    font-size: 13px;
+    margin-top: 6px;
+  }
+  .shop-card .scost {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    color: var(--lavender-dim);
+    margin: 3px 0 8px;
+  }
+  .shop-card .scost .fb-icon { color: var(--sage-bright); }
+
   /* Auth screen */
   .auth-wrap {
     flex: 1;
@@ -528,6 +793,7 @@
       <div class="brand">Bloom</div>
       <div class="header-right">
         <div class="date" id="today"></div>
+        <div class="fruit-balance" id="fruitBalance"><span class="fb-icon">🍎</span><span id="fruitBalanceNum">0</span></div>
         <button class="signout-link" id="signOutBtn">Sign out</button>
       </div>
     </header>
@@ -590,6 +856,11 @@
         <div class="plant-name" id="plantName">Your plant: <span id="plantNameValue">Succulent</span></div>
       </div>
 
+      <div class="grow-picker">
+        <span class="grow-picker-label">Growing today</span>
+        <div class="grow-picker-row" id="growPickerRow"></div>
+      </div>
+
       <div class="prompt-card">
         <span class="prompt-label" id="promptLabel">Today's check-in</span>
         <div class="prompt-text" id="promptText">How's your heart today, and what's one small thing you're grateful for?</div>
@@ -611,6 +882,26 @@
       </div>
     </div>
 
+    <div class="view" id="viewGarden">
+      <div class="garden-grid" id="gardenGrid"></div>
+    </div>
+
+    <div class="view" id="viewShop">
+      <div class="shop-scroll">
+        <span class="shop-section-title">Mystery box</span>
+        <div class="mystery-card">
+          <div class="mbox-icon">🎁</div>
+          <div class="mbox-info">
+            <div class="mbox-title">Mystery Seed Box</div>
+            <div class="mbox-desc">A random plant, sometimes rare.</div>
+          </div>
+          <button class="buy-btn" id="mysteryBoxBtn">🍎 <span id="mysteryBoxCost">40</span></button>
+        </div>
+        <span class="shop-section-title">Plants</span>
+        <div class="shop-grid" id="shopGrid"></div>
+      </div>
+    </div>
+
     <div class="toast" id="toast"></div>
   </div>
 
@@ -626,6 +917,14 @@
     <div class="tab" id="tabYou" data-view="viewYou">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
       <span>You</span>
+    </div>
+    <div class="tab" id="tabGarden" data-view="viewGarden">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22V12M12 12C12 8 9 5 5 5c0 4 3 7 7 7zM12 12c0-4 3-7 7-7 0 4-3 7-7 7z"/></svg>
+      <span>Garden</span>
+    </div>
+    <div class="tab" id="tabShop" data-view="viewShop">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l1.5-5h15L21 9"/><path d="M4 9h16v10a1 1 0 01-1 1H5a1 1 0 01-1-1V9z"/><path d="M9 13a3 3 0 006 0"/></svg>
+      <span>Shop</span>
     </div>
   </nav>
 </div>
@@ -869,6 +1168,90 @@
     </g>`
   ];
 
+  // ---------- Garden species catalog ----------
+  // Each species has a shop cost (0 = starter, free), a stem/leaf color,
+  // a flower color, and a "shape" used by drawPlantIcon to differentiate
+  // silhouettes. Garden plants grow through stages 0-5 (0 = just planted,
+  // 5 = fully bloomed & fruiting).
+  const MAX_GROWTH = 5;
+  const speciesCatalog = [
+    { id: 'succulent', name: 'Succulent', cost: 0,  shape: 'round',  stem: '#7FA582', leaf: '#8FB996', flower: '#E3A9A0', center: '#F2C879' },
+    { id: 'dandelion', name: 'Dandelion', cost: 10, shape: 'puff',   stem: '#7FA582', leaf: '#8FB996', flower: '#F2C879', center: '#F5F1EC' },
+    { id: 'cactus',    name: 'Cactus',    cost: 15, shape: 'cactus', stem: '#4B8B65', leaf: '#5FA179', flower: '#E3A9A0', center: '#F2C879' },
+    { id: 'tulip',     name: 'Tulip',     cost: 18, shape: 'cup',    stem: '#6F9973', leaf: '#7FAF6D', flower: '#E86A6A', center: '#F2C879' },
+    { id: 'moonflower',name: 'Moonflower',cost: 20, shape: 'star',   stem: '#8577B8', leaf: '#6E63A3', flower: '#C9BFE0', center: '#F2C879' },
+    { id: 'fern',      name: 'Fern',      cost: 20, shape: 'frond',  stem: '#6F9973', leaf: '#8FB996', flower: '#F5F1EC', center: '#F2C879' },
+    { id: 'marigold',  name: 'Marigold',  cost: 25, shape: 'burst',  stem: '#7FA582', leaf: '#9CC49E', flower: '#F2914B', center: '#C9622E' },
+    { id: 'lavender',  name: 'Lavender',  cost: 28, shape: 'spike',  stem: '#7A8F6B', leaf: '#8FB996', flower: '#B7AECD', center: '#8577B8' },
+    { id: 'sunflower', name: 'Sunflower', cost: 30, shape: 'burstbig',stem:'#6B9A5A', leaf: '#7FAF6D', flower: '#F2C879', center: '#6E4A2E' },
+    { id: 'rose',      name: 'Rose',      cost: 35, shape: 'rose',   stem: '#5C7A52', leaf: '#7FA582', flower: '#D1495B', center: '#8B2E3D' },
+  ];
+  function speciesById(id) { return speciesCatalog.find(s => s.id === id) || speciesCatalog[0]; }
+
+  // Draws a compact SVG icon (viewBox 0 0 100 128) for a garden plant at a
+  // given growth stage (0-5), reused for both the garden grid and shop cards.
+  function drawPlantIcon(sp, growth, fruitReady) {
+    const g = Math.max(0, Math.min(MAX_GROWTH, growth));
+    const potColor = '#463A5C', potLight = '#544868', soil = '#2C2438';
+    let parts = `<path d="M32 100 L68 100 L64 118 L36 118 Z" fill="${potColor}"/>
+      <rect x="30" y="94" width="40" height="8" rx="4" fill="${potLight}"/>
+      <ellipse cx="50" cy="97" rx="17" ry="3" fill="${soil}"/>`;
+
+    if (sp.shape === 'cactus') {
+      const h = 20 + g * 8;
+      parts += `<path d="M50 97 C42 97 40 ${97-h} 50 ${97-h} C60 ${97-h} 58 97 50 97 Z" fill="${sp.stem}"/>`;
+      if (g >= 2) parts += `<path d="M50 ${97-h*0.6} C58 ${97-h*0.6} 60 ${97-h*0.9} 54 ${97-h} " stroke="${sp.leaf}" stroke-width="6" fill="none" stroke-linecap="round"/>`;
+      if (g >= 3) parts += `<path d="M50 ${97-h*0.75} C42 ${97-h*0.75} 40 ${97-h} 46 ${97-h*1.05}" stroke="${sp.leaf}" stroke-width="6" fill="none" stroke-linecap="round"/>`;
+      if (g >= 4) parts += `<circle cx="50" cy="${97-h-2}" r="7" fill="${sp.flower}"/>`;
+      if (g >= 5) parts += `<circle cx="50" cy="${97-h-2}" r="3.5" fill="${sp.center}"/>`;
+    } else {
+      const stemTop = 97 - (10 + g * 14);
+      parts += `<path d="M50 97 L50 ${stemTop}" stroke="${sp.stem}" stroke-width="4" stroke-linecap="round"/>`;
+      if (g >= 1) parts += `<path d="M50 88 C38 85 32 76 36 66 C48 70 54 80 50 88 Z" fill="${sp.leaf}"/>`;
+      if (g >= 2) parts += `<path d="M50 88 C62 85 68 76 64 66 C52 70 46 80 50 88 Z" fill="${sp.leaf}"/>`;
+      if (g >= 3) {
+        if (sp.shape === 'spike') {
+          for (let i=0;i<4;i++) parts += `<ellipse cx="${50-4+i*2.6}" cy="${stemTop+6-i*3}" rx="4" ry="6" fill="${sp.flower}"/>`;
+        } else {
+          parts += `<circle cx="50" cy="${stemTop+2}" r="6" fill="${sp.flower}" opacity="0.85"/>`;
+        }
+      }
+      if (g >= 4) {
+        const cx = 50, cy = stemTop - 4;
+        if (sp.shape === 'burst' || sp.shape === 'burstbig') {
+          const n = sp.shape === 'burstbig' ? 10 : 7;
+          const r = sp.shape === 'burstbig' ? 11 : 8;
+          for (let i=0;i<n;i++) parts += `<ellipse cx="${cx}" cy="${cy}" rx="4" ry="${r}" fill="${sp.flower}" transform="rotate(${i*360/n} ${cx} ${cy})"/>`;
+        } else if (sp.shape === 'star') {
+          for (let i=0;i<5;i++) parts += `<ellipse cx="${cx}" cy="${cy}" rx="5" ry="10" fill="${sp.flower}" transform="rotate(${i*72} ${cx} ${cy})"/>`;
+        } else if (sp.shape === 'rose') {
+          parts += `<circle cx="${cx}" cy="${cy}" r="9" fill="${sp.flower}"/><circle cx="${cx}" cy="${cy}" r="6" fill="${sp.center}" opacity="0.5"/><circle cx="${cx}" cy="${cy}" r="3" fill="${sp.center}"/>`;
+        } else if (sp.shape === 'cup') {
+          parts += `<path d="M${cx-8} ${cy} C${cx-8} ${cy-12} ${cx+8} ${cy-12} ${cx+8} ${cy} C${cx+8} ${cy+4} ${cx-8} ${cy+4} ${cx-8} ${cy} Z" fill="${sp.flower}"/>`;
+        } else if (sp.shape === 'frond') {
+          parts += `<circle cx="${cx}" cy="${cy}" r="4" fill="${sp.flower}"/><circle cx="${cx+6}" cy="${cy-3}" r="3" fill="${sp.flower}"/><circle cx="${cx-6}" cy="${cy-3}" r="3" fill="${sp.flower}"/><circle cx="${cx}" cy="${cy-7}" r="3" fill="${sp.flower}"/>`;
+        } else if (sp.shape === 'puff' && g < 5) {
+          for (let i=0;i<5;i++) parts += `<ellipse cx="${cx}" cy="${cy}" rx="4" ry="9" fill="${sp.flower}" transform="rotate(${i*72} ${cx} ${cy})"/>`;
+        } else {
+          for (let i=0;i<5;i++) parts += `<ellipse cx="${cx}" cy="${cy}" rx="4" ry="9" fill="${sp.flower}" transform="rotate(${i*72} ${cx} ${cy})"/>`;
+        }
+        parts += `<circle cx="${cx}" cy="${cy}" r="3" fill="${sp.center}"/>`;
+      }
+      if (g >= 5 && sp.shape === 'puff') {
+        const cx = 50, cy = stemTop - 4;
+        parts += `<circle cx="${cx}" cy="${cy}" r="10" fill="#F5F1EC" opacity="0.9"/>`;
+        for (let i=0;i<12;i++) {
+          const a = i*30*Math.PI/180;
+          parts += `<line x1="${cx}" y1="${cy}" x2="${cx+Math.cos(a)*13}" y2="${cy+Math.sin(a)*13}" stroke="#F5F1EC" stroke-width="1"/>`;
+        }
+      }
+    }
+    if (g >= MAX_GROWTH && fruitReady > 0) {
+      parts += `<circle cx="68" cy="60" r="6" fill="#D1495B"/><circle cx="72" cy="60" r="6" fill="#D1495B"/>`;
+    }
+    return `<svg viewBox="0 0 100 128" width="56" height="70">${parts}</svg>`;
+  }
+
   let currentPlantType = null;
 
   // Figures out which species best reflects the person's recent mood.
@@ -908,6 +1291,12 @@
   let selectedMood = null;
   let entries = []; // rows from supabase: {entry_date, mood, text}
   let currentUser = null;
+
+  // ---------- Garden / fruit state ----------
+  let garden = [];          // rows from supabase: {id, species, growth, fruit_ready}
+  let fruitBalance = 0;
+  let activeGrowId = null;  // id of the garden plant selected to grow today
+  const MYSTERY_BOX_COST = 40;
 
   const moodsEl = document.getElementById('moods');
   const streakNum = document.getElementById('streakNum');
@@ -1076,6 +1465,183 @@
     renderYou();
   }
 
+  // ---------- Profile (fruit balance) ----------
+  async function loadProfile() {
+    let { data, error } = await sb.from('profiles').select('fruit_balance').eq('user_id', currentUser.id).maybeSingle();
+    if (error) { console.error(error); return; }
+    if (!data) {
+      const ins = await sb.from('profiles').insert({ user_id: currentUser.id, fruit_balance: 0 }).select('fruit_balance').single();
+      data = ins.data || { fruit_balance: 0 };
+    }
+    fruitBalance = data.fruit_balance || 0;
+    renderFruitBalance();
+  }
+
+  function renderFruitBalance(animate) {
+    const el = document.getElementById('fruitBalanceNum');
+    el.textContent = fruitBalance;
+    if (animate) {
+      const wrap = document.getElementById('fruitBalance');
+      wrap.classList.remove('fruit-pop');
+      void wrap.offsetWidth;
+      wrap.classList.add('fruit-pop');
+    }
+  }
+
+  async function setFruitBalance(newVal, animate) {
+    fruitBalance = Math.max(0, newVal);
+    renderFruitBalance(animate);
+    await sb.from('profiles').update({ fruit_balance: fruitBalance }).eq('user_id', currentUser.id);
+  }
+
+  // ---------- Garden (owned plants) ----------
+  async function loadGarden() {
+    const { data, error } = await sb.from('garden_plants').select('id, species, growth, fruit_ready').eq('user_id', currentUser.id).order('created_at', { ascending: true });
+    if (error) { console.error(error); return; }
+    garden = data || [];
+    if (!garden.length) {
+      const { data: starter, error: sErr } = await sb.from('garden_plants')
+        .insert({ user_id: currentUser.id, species: 'succulent', growth: 0, fruit_ready: 0 })
+        .select('id, species, growth, fruit_ready').single();
+      if (!sErr && starter) garden = [starter];
+    }
+    if (!garden.find(p => p.id === activeGrowId)) activeGrowId = garden[0] ? garden[0].id : null;
+    renderGrowPicker();
+    renderGarden();
+  }
+
+  function renderGrowPicker() {
+    const row = document.getElementById('growPickerRow');
+    row.innerHTML = '';
+    garden.forEach(p => {
+      const sp = speciesById(p.species);
+      const chip = document.createElement('div');
+      chip.className = 'grow-chip' + (p.id === activeGrowId ? ' selected' : '');
+      chip.innerHTML = drawPlantIcon(sp, p.growth, p.fruit_ready) + `<div class="gc-name">${sp.name}</div>`;
+      chip.addEventListener('click', () => {
+        if (logBtn.disabled) return; // already logged today, can't change target
+        activeGrowId = p.id;
+        renderGrowPicker();
+      });
+      row.appendChild(chip);
+    });
+  }
+
+  function renderGarden() {
+    const grid = document.getElementById('gardenGrid');
+    grid.innerHTML = '';
+    if (!garden.length) {
+      grid.innerHTML = '<div class="garden-empty">Your garden is empty.<br>Visit the Shop to plant something new.</div>';
+      return;
+    }
+    garden.forEach(p => {
+      const sp = speciesById(p.species);
+      const card = document.createElement('div');
+      card.className = 'garden-card' + (p.id === activeGrowId ? ' active-grow' : '');
+      const pct = Math.round((p.growth / MAX_GROWTH) * 100);
+      const stageLabel = p.growth >= MAX_GROWTH ? 'Full bloom' : p.growth === 0 ? 'Just planted' : `Stage ${p.growth}/${MAX_GROWTH}`;
+      card.innerHTML = `
+        ${p.fruit_ready > 0 ? `<div class="fruit-badge">🍎 ${p.fruit_ready}</div>` : ''}
+        ${drawPlantIcon(sp, p.growth, p.fruit_ready)}
+        <div class="gname">${sp.name}</div>
+        <div class="gstage">${stageLabel}</div>
+        <div class="gbar"><div class="gbar-fill" style="width:${pct}%"></div></div>
+        <button class="select-grow-btn ${p.id === activeGrowId ? 'is-active' : ''}" data-id="${p.id}">${p.id === activeGrowId ? 'Growing' : 'Grow this'}</button>
+        ${p.fruit_ready > 0 ? `<button class="harvest-btn" data-id="${p.id}">Harvest 🍎 ${p.fruit_ready}</button>` : ''}
+      `;
+      card.querySelector('.select-grow-btn').addEventListener('click', () => {
+        activeGrowId = p.id;
+        renderGarden();
+        renderGrowPicker();
+      });
+      const hBtn = card.querySelector('.harvest-btn');
+      if (hBtn) hBtn.addEventListener('click', () => harvestPlant(p.id));
+      grid.appendChild(card);
+    });
+  }
+
+  async function harvestPlant(id) {
+    const plant = garden.find(p => p.id === id);
+    if (!plant || plant.fruit_ready <= 0) return;
+    const amount = plant.fruit_ready;
+    plant.fruit_ready = 0;
+    await sb.from('garden_plants').update({ fruit_ready: 0 }).eq('id', id);
+    await setFruitBalance(fruitBalance + amount, true);
+    renderGarden();
+    showToast(`Harvested ${amount} fruit 🍎`);
+  }
+
+  // Called once per successful daily check-in: advances the selected
+  // garden plant's growth, or — once it's fully bloomed — adds a fruit
+  // to that plant ready for harvest.
+  async function growActivePlant() {
+    if (!activeGrowId) return;
+    const plant = garden.find(p => p.id === activeGrowId);
+    if (!plant) return;
+    if (plant.growth < MAX_GROWTH) {
+      plant.growth += 1;
+      await sb.from('garden_plants').update({ growth: plant.growth }).eq('id', plant.id);
+    } else {
+      plant.fruit_ready += 1;
+      await sb.from('garden_plants').update({ fruit_ready: plant.fruit_ready }).eq('id', plant.id);
+    }
+    renderGarden();
+    renderGrowPicker();
+  }
+
+  // ---------- Shop ----------
+  function renderShop() {
+    document.getElementById('mysteryBoxCost').textContent = MYSTERY_BOX_COST;
+    const mBtn = document.getElementById('mysteryBoxBtn');
+    mBtn.disabled = fruitBalance < MYSTERY_BOX_COST;
+    const grid = document.getElementById('shopGrid');
+    grid.innerHTML = '';
+    speciesCatalog.filter(sp => sp.cost > 0).forEach(sp => {
+      const card = document.createElement('div');
+      card.className = 'shop-card';
+      card.innerHTML = `
+        ${drawPlantIcon(sp, 4, 0)}
+        <div class="sname">${sp.name}</div>
+        <div class="scost"><span class="fb-icon">🍎</span> ${sp.cost}</div>
+        <button class="buy-btn" ${fruitBalance < sp.cost ? 'disabled' : ''}>Plant</button>
+      `;
+      card.querySelector('.buy-btn').addEventListener('click', () => buyPlant(sp.id));
+      grid.appendChild(card);
+    });
+  }
+
+  async function buyPlant(speciesId) {
+    const sp = speciesById(speciesId);
+    if (fruitBalance < sp.cost) { showToast("Not enough fruit yet"); return; }
+    await setFruitBalance(fruitBalance - sp.cost, true);
+    const { data, error } = await sb.from('garden_plants')
+      .insert({ user_id: currentUser.id, species: sp.id, growth: 0, fruit_ready: 0 })
+      .select('id, species, growth, fruit_ready').single();
+    if (error) { console.error(error); showToast("Couldn't plant it — try again"); return; }
+    garden.push(data);
+    renderGarden();
+    renderGrowPicker();
+    renderShop();
+    showToast(`Planted a ${sp.name} 🌱`);
+  }
+
+  async function buyMysteryBox() {
+    if (fruitBalance < MYSTERY_BOX_COST) { showToast("Not enough fruit yet"); return; }
+    await setFruitBalance(fruitBalance - MYSTERY_BOX_COST, true);
+    const pick = speciesCatalog[Math.floor(Math.random() * speciesCatalog.length)];
+    const { data, error } = await sb.from('garden_plants')
+      .insert({ user_id: currentUser.id, species: pick.id, growth: 0, fruit_ready: 0 })
+      .select('id, species, growth, fruit_ready').single();
+    if (error) { console.error(error); showToast("Couldn't open the box — try again"); return; }
+    garden.push(data);
+    renderGarden();
+    renderGrowPicker();
+    renderShop();
+    showToast(`The box held a ${pick.name}! 🎁`);
+  }
+
+  document.getElementById('mysteryBoxBtn').addEventListener('click', buyMysteryBox);
+
   logBtn.addEventListener('click', async () => {
     if (logBtn.disabled) return;
     if (selectedMood === null) {
@@ -1102,6 +1668,7 @@
     }
 
     await loadEntries();
+    await growActivePlant();
     const { current } = computeStreaks(entries);
     showToast(messages[Math.min(current, messages.length) - 1]);
   });
@@ -1115,6 +1682,8 @@
       document.getElementById(tab.dataset.view).classList.add('active');
       if (tab.dataset.view === 'viewJournal') renderJournal();
       if (tab.dataset.view === 'viewYou') renderYou();
+      if (tab.dataset.view === 'viewGarden') renderGarden();
+      if (tab.dataset.view === 'viewShop') renderShop();
     });
   });
 
@@ -1192,6 +1761,9 @@
     await sb.auth.signOut();
     currentUser = null;
     entries = [];
+    garden = [];
+    fruitBalance = 0;
+    activeGrowId = null;
     authWrap.style.display = 'flex';
     mainScreen.style.display = 'none';
     mainNav.style.display = 'none';
@@ -1205,6 +1777,8 @@
     mainScreen.style.display = 'flex';
     mainNav.style.display = 'flex';
     loadEntries();
+    loadProfile();
+    loadGarden();
   }
 
   // Check for an existing session on load
