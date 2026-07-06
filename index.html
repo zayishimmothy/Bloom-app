@@ -764,6 +764,139 @@
     cursor: pointer;
     padding: 0;
   }
+
+  /* ---------- Fruit icon (unique currency glyph) ---------- */
+  .fruit-icon { display:inline-block; vertical-align:-3px; width:15px; height:15px; }
+  .fruit-icon.sm { width:12px; height:12px; vertical-align:-2px; }
+  .fruit-icon.lg { width:26px; height:26px; vertical-align:-6px; }
+
+  /* ---------- 6-tab bar tightening ---------- */
+  nav.tabbar { padding: 12px 0; gap: 2px; }
+  .tab svg { width:18px; height:18px; }
+  .tab span { font-size: 8px; }
+
+  /* ---------- Growth / harvest / watering animations ---------- */
+  @keyframes growPulse {
+    0% { transform: scale(1); filter: brightness(1); }
+    30% { transform: scale(1.18); filter: brightness(1.35); }
+    60% { transform: scale(0.95); }
+    100% { transform: scale(1); filter: brightness(1); }
+  }
+  .grow-pulse { animation: growPulse 0.6s cubic-bezier(.34,1.56,.64,1); }
+
+  @keyframes sparkleFloat {
+    0% { opacity:0; transform: translateY(4px) scale(0.5); }
+    30% { opacity:1; }
+    100% { opacity:0; transform: translateY(-22px) scale(1.1); }
+  }
+  .sparkle-pop {
+    position:absolute; pointer-events:none; font-size:14px;
+    animation: sparkleFloat 1s ease-out forwards;
+  }
+
+  @keyframes dropletFall {
+    0% { opacity:0; transform: translateY(-16px) scale(0.6); }
+    40% { opacity:1; }
+    100% { opacity:0; transform: translateY(18px) scale(1); }
+  }
+  .droplet-pop {
+    position:absolute; pointer-events:none; font-size:16px;
+    animation: dropletFall 0.7s ease-in forwards;
+  }
+
+  @keyframes cardShake {
+    0%,100% { transform: translateX(0); }
+    25% { transform: translateX(-3px); }
+    75% { transform: translateX(3px); }
+  }
+  .card-flash { animation: cardShake 0.3s ease; }
+
+  .garden-card, .grow-chip { position:relative; overflow:visible; }
+
+  /* ---------- Watering can ---------- */
+  .water-btn {
+    margin-top: 6px;
+    width:100%;
+    background: #3E6E8E;
+    color: #EAF4FA;
+    border:none;
+    border-radius: 10px;
+    padding: 7px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 700;
+    cursor:pointer;
+    transition: background 0.2s, transform 0.1s;
+  }
+  .water-btn:hover { background: #4E86AA; }
+  .water-btn:active { transform: scale(0.97); }
+  .water-btn:disabled { background: #4b4560; color: var(--lavender-dim); cursor:default; }
+
+  .tool-card {
+    background: linear-gradient(135deg, #2C4356, #3E6E8E);
+    border: 1px dashed var(--lavender-dim);
+    border-radius: 18px;
+    padding: 16px;
+    display:flex;
+    align-items:center;
+    gap: 14px;
+    margin-bottom: 16px;
+  }
+  .tool-card .mbox-icon { font-size: 30px; }
+  .tool-card .mbox-title { font-family: var(--font-display); font-size: 15px; margin-bottom: 3px; }
+  .tool-card .mbox-desc { font-family: var(--font-mono); font-size: 10px; color: var(--lavender-dim); line-height: 1.4; }
+  .tool-card .owned-badge {
+    font-family: var(--font-mono); font-size: 10px; text-transform:uppercase;
+    letter-spacing: 0.06em; color: var(--sage-bright); font-weight:700;
+  }
+
+  .garden-header {
+    display:flex; justify-content:space-between; align-items:baseline;
+    margin-top: 4px;
+  }
+  .garden-count {
+    font-family: var(--font-mono); font-size: 10.5px; color: var(--lavender-dim);
+    text-transform:uppercase; letter-spacing:0.06em;
+  }
+
+  /* ---------- Friends tab ---------- */
+  .friends-scroll { overflow-y:auto; flex:1; padding-bottom: 20px; margin-top: 10px; }
+  .friend-add-row { display:flex; gap:8px; margin-bottom: 16px; }
+  .friend-add-row input {
+    flex:1; background: var(--surface-hi); border:none; border-radius: 12px;
+    color: var(--cream); font-family: var(--font-body); font-size: 13.5px; padding: 11px 14px;
+  }
+  .friend-add-row input::placeholder { color: var(--lavender-dim); }
+  .friend-add-btn {
+    background: var(--sage); color:#16261a; border:none; border-radius: 12px;
+    padding: 0 16px; font-family: var(--font-body); font-weight:700; font-size:13px; cursor:pointer;
+  }
+  .friend-add-btn:hover { background: var(--sage-bright); }
+  .friend-section-title {
+    font-family: var(--font-mono); font-size: 10px; text-transform: uppercase;
+    letter-spacing: 0.1em; color: var(--rose); margin: 14px 0 10px; display:block;
+  }
+  .friend-card {
+    background: var(--surface); border-radius: 14px; padding: 12px 14px;
+    display:flex; align-items:center; justify-content:space-between; margin-bottom: 8px;
+  }
+  .friend-name { font-family: var(--font-display); font-size: 14px; }
+  .friend-sub {
+    font-family: var(--font-mono); font-size: 9.5px; color: var(--lavender-dim);
+    text-transform:uppercase; letter-spacing:0.05em; margin-top:2px;
+  }
+  .friend-actions { display:flex; gap:6px; }
+  .friend-btn {
+    border:none; border-radius: 9px; padding: 7px 10px; font-family: var(--font-mono);
+    font-size: 9.5px; font-weight:700; text-transform:uppercase; cursor:pointer;
+  }
+  .friend-btn.accept { background: var(--sage); color:#16261a; }
+  .friend-btn.accept:hover { background: var(--sage-bright); }
+  .friend-btn.decline { background: var(--surface-hi); color: var(--cream); }
+  .friend-btn.decline:hover { background: #4b4560; }
+  .friends-empty { color: var(--lavender-dim); font-size: 13.5px; text-align:center; margin-top: 40px; line-height:1.5; }
 </style>
 </head>
 <body>
@@ -793,7 +926,7 @@
       <div class="brand">Bloom</div>
       <div class="header-right">
         <div class="date" id="today"></div>
-        <div class="fruit-balance" id="fruitBalance"><span class="fb-icon">🍎</span><span id="fruitBalanceNum">0</span></div>
+        <div class="fruit-balance" id="fruitBalance"><svg class="fruit-icon sm" viewBox="0 0 24 24"><path d="M12 22c-4.4 0-8-4.6-8-9.5C4 8 6.8 5 10 5c.9 0 1.7.2 2 .5.3-.3 1.1-.5 2-.5 3.2 0 6 3 6 7.5 0 4.9-3.6 9.5-8 9.5z" fill="var(--rose)"/><path d="M12 5c0-1.7.9-3 2.5-3.5" stroke="var(--sage-bright)" stroke-width="1.4" fill="none" stroke-linecap="round"/><ellipse cx="9.5" cy="11" rx="1.6" ry="2.2" fill="#F5F1EC" opacity="0.35"/></svg><span id="fruitBalanceNum">0</span></div>
         <button class="signout-link" id="signOutBtn">Sign out</button>
       </div>
     </header>
@@ -883,11 +1016,24 @@
     </div>
 
     <div class="view" id="viewGarden">
+      <div class="garden-header">
+        <span class="shop-section-title" style="margin:10px 0 0">Your garden</span>
+        <span class="garden-count" id="gardenCount">0/20</span>
+      </div>
       <div class="garden-grid" id="gardenGrid"></div>
     </div>
 
     <div class="view" id="viewShop">
       <div class="shop-scroll">
+        <span class="shop-section-title" style="margin-top:0">Tools</span>
+        <div class="tool-card">
+          <div class="mbox-icon">💧</div>
+          <div class="mbox-info">
+            <div class="mbox-title">Watering Can</div>
+            <div class="mbox-desc">Unlock once, then water any plant once a day for double growth.</div>
+          </div>
+          <button class="buy-btn" id="wateringCanBtn">Unlock <svg class="fruit-icon sm" viewBox="0 0 24 24"><path d="M12 22c-4.4 0-8-4.6-8-9.5C4 8 6.8 5 10 5c.9 0 1.7.2 2 .5.3-.3 1.1-.5 2-.5 3.2 0 6 3 6 7.5 0 4.9-3.6 9.5-8 9.5z" fill="#16261a"/></svg> <span id="wateringCanCost">5</span></button>
+        </div>
         <span class="shop-section-title">Mystery box</span>
         <div class="mystery-card">
           <div class="mbox-icon">🎁</div>
@@ -895,10 +1041,22 @@
             <div class="mbox-title">Mystery Seed Box</div>
             <div class="mbox-desc">A random plant, sometimes rare.</div>
           </div>
-          <button class="buy-btn" id="mysteryBoxBtn">🍎 <span id="mysteryBoxCost">40</span></button>
+          <button class="buy-btn" id="mysteryBoxBtn"><svg class="fruit-icon sm" viewBox="0 0 24 24"><path d="M12 22c-4.4 0-8-4.6-8-9.5C4 8 6.8 5 10 5c.9 0 1.7.2 2 .5.3-.3 1.1-.5 2-.5 3.2 0 6 3 6 7.5 0 4.9-3.6 9.5-8 9.5z" fill="#16261a"/></svg> <span id="mysteryBoxCost">40</span></button>
         </div>
         <span class="shop-section-title">Plants</span>
         <div class="shop-grid" id="shopGrid"></div>
+      </div>
+    </div>
+
+    <div class="view" id="viewFriends">
+      <div class="friends-scroll">
+        <div class="friend-add-row">
+          <input type="text" id="friendUsernameInput" placeholder="Add a friend by username">
+          <button class="friend-add-btn" id="friendAddBtn">Add</button>
+        </div>
+        <div id="friendRequestsSection"></div>
+        <span class="friend-section-title">Friends</span>
+        <div id="friendsListSection"></div>
       </div>
     </div>
 
@@ -926,6 +1084,10 @@
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l1.5-5h15L21 9"/><path d="M4 9h16v10a1 1 0 01-1 1H5a1 1 0 01-1-1V9z"/><path d="M9 13a3 3 0 006 0"/></svg>
       <span>Shop</span>
     </div>
+    <div class="tab" id="tabFriends" data-view="viewFriends">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="8" r="3.2"/><path d="M2 20c0-3.3 2.7-5.5 6-5.5s6 2.2 6 5.5"/><circle cx="17" cy="9" r="2.6"/><path d="M15.5 14.2c2.6.3 4.5 2.2 4.5 4.8"/></svg>
+      <span>Friends</span>
+    </div>
   </nav>
 </div>
 
@@ -948,7 +1110,35 @@
     { face: '😄', color: '#7FA582' },
   ];
 
-  const growthStages = ['leaf3', 'leaf4', 'bud1', 'flower1', 'flower2'];
+  const growthStages = ['leaf3', 'leaf4', 'bud1', 'flower1', 'flower2', 'flower3', 'sparkle1', 'crown1'];
+
+  // Universal overlay stages appended to every mood-plant template so the
+  // hero plant has extra levels beyond the original 5 (streak 6-8).
+  const EXTRA_STAGE_MARKUP = `
+    <g id="flower3" class="bloom-unit">
+      <g transform="translate(140,140)">
+        <ellipse rx="5" ry="9" fill="#F2C879" transform="rotate(10)"/>
+        <ellipse rx="5" ry="9" fill="#F2C879" transform="rotate(82)"/>
+        <ellipse rx="5" ry="9" fill="#F2C879" transform="rotate(154)"/>
+        <ellipse rx="5" ry="9" fill="#F2C879" transform="rotate(226)"/>
+        <ellipse rx="5" ry="9" fill="#F2C879" transform="rotate(298)"/>
+        <circle r="3.5" fill="#E3A9A0"/>
+      </g>
+    </g>
+    <g id="sparkle1" class="bloom-unit">
+      <g fill="#F5F1EC">
+        <path d="M70 84 l2.5 6 6 2.5 -6 2.5 -2.5 6 -2.5-6 -6-2.5 6-2.5z"/>
+        <path d="M150 100 l2 5 5 2 -5 2 -2 5 -2-5 -5-2 5-2z" opacity="0.9"/>
+        <path d="M110 60 l2 5 5 2 -5 2 -2 5 -2-5 -5-2 5-2z" opacity="0.85"/>
+      </g>
+    </g>
+    <g id="crown1" class="bloom-unit">
+      <circle cx="110" cy="90" r="46" fill="url(#crownGlow)" opacity="0.55"/>
+      <radialGradient id="crownGlow" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#F2C879"/>
+        <stop offset="100%" stop-color="#F2C879" stop-opacity="0"/>
+      </radialGradient>
+    </g>`;
 
   // ---------- Mood-based plant species ----------
   // Each mood maps to a distinct plant. All still grow through the same
@@ -1173,18 +1363,37 @@
   // a flower color, and a "shape" used by drawPlantIcon to differentiate
   // silhouettes. Garden plants grow through stages 0-5 (0 = just planted,
   // 5 = fully bloomed & fruiting).
-  const MAX_GROWTH = 5;
+  const MAX_GROWTH = 8;
+  // Each species has a shop cost, a shape (reused procedural renderer),
+  // a color set, and a fruitYield: how much fruit it produces per harvest
+  // once fully grown. Rarer, pricier plants yield more fruit.
   const speciesCatalog = [
-    { id: 'succulent', name: 'Succulent', cost: 0,  shape: 'round',  stem: '#7FA582', leaf: '#8FB996', flower: '#E3A9A0', center: '#F2C879' },
-    { id: 'dandelion', name: 'Dandelion', cost: 10, shape: 'puff',   stem: '#7FA582', leaf: '#8FB996', flower: '#F2C879', center: '#F5F1EC' },
-    { id: 'cactus',    name: 'Cactus',    cost: 15, shape: 'cactus', stem: '#4B8B65', leaf: '#5FA179', flower: '#E3A9A0', center: '#F2C879' },
-    { id: 'tulip',     name: 'Tulip',     cost: 18, shape: 'cup',    stem: '#6F9973', leaf: '#7FAF6D', flower: '#E86A6A', center: '#F2C879' },
-    { id: 'moonflower',name: 'Moonflower',cost: 20, shape: 'star',   stem: '#8577B8', leaf: '#6E63A3', flower: '#C9BFE0', center: '#F2C879' },
-    { id: 'fern',      name: 'Fern',      cost: 20, shape: 'frond',  stem: '#6F9973', leaf: '#8FB996', flower: '#F5F1EC', center: '#F2C879' },
-    { id: 'marigold',  name: 'Marigold',  cost: 25, shape: 'burst',  stem: '#7FA582', leaf: '#9CC49E', flower: '#F2914B', center: '#C9622E' },
-    { id: 'lavender',  name: 'Lavender',  cost: 28, shape: 'spike',  stem: '#7A8F6B', leaf: '#8FB996', flower: '#B7AECD', center: '#8577B8' },
-    { id: 'sunflower', name: 'Sunflower', cost: 30, shape: 'burstbig',stem:'#6B9A5A', leaf: '#7FAF6D', flower: '#F2C879', center: '#6E4A2E' },
-    { id: 'rose',      name: 'Rose',      cost: 35, shape: 'rose',   stem: '#5C7A52', leaf: '#7FA582', flower: '#D1495B', center: '#8B2E3D' },
+    { id: 'succulent',  name: 'Succulent',   cost: 0,   shape: 'round',    stem: '#7FA582', leaf: '#8FB996', flower: '#E3A9A0', center: '#F2C879', fruitYield: 1 },
+    { id: 'clover',     name: 'Clover',      cost: 6,   shape: 'round',    stem: '#5C8B5E', leaf: '#7FA582', flower: '#9CC49E', center: '#F5F1EC', fruitYield: 1 },
+    { id: 'dandelion',  name: 'Dandelion',   cost: 10,  shape: 'puff',     stem: '#7FA582', leaf: '#8FB996', flower: '#F2C879', center: '#F5F1EC', fruitYield: 1 },
+    { id: 'daisy',      name: 'Daisy',       cost: 12,  shape: 'frond',    stem: '#7FA582', leaf: '#9CC49E', flower: '#F5F1EC', center: '#F2C879', fruitYield: 1 },
+    { id: 'cactus',     name: 'Cactus',      cost: 15,  shape: 'cactus',   stem: '#4B8B65', leaf: '#5FA179', flower: '#E3A9A0', center: '#F2C879', fruitYield: 2 },
+    { id: 'poppy',      name: 'Poppy',       cost: 16,  shape: 'cup',      stem: '#7A8F6B', leaf: '#8FB996', flower: '#D1495B', center: '#3A2418', fruitYield: 2 },
+    { id: 'tulip',      name: 'Tulip',       cost: 18,  shape: 'cup',      stem: '#6F9973', leaf: '#7FAF6D', flower: '#E86A6A', center: '#F2C879', fruitYield: 2 },
+    { id: 'iris',       name: 'Iris',        cost: 19,  shape: 'star',     stem: '#5F7F8B', leaf: '#7FA582', flower: '#7B8FD4', center: '#F2C879', fruitYield: 2 },
+    { id: 'moonflower', name: 'Moonflower',  cost: 20,  shape: 'star',     stem: '#8577B8', leaf: '#6E63A3', flower: '#C9BFE0', center: '#F2C879', fruitYield: 2 },
+    { id: 'fern',       name: 'Fern',        cost: 20,  shape: 'frond',    stem: '#6F9973', leaf: '#8FB996', flower: '#F5F1EC', center: '#F2C879', fruitYield: 2 },
+    { id: 'hibiscus',   name: 'Hibiscus',    cost: 22,  shape: 'cup',      stem: '#7FA582', leaf: '#8FB996', flower: '#F2657A', center: '#F2C879', fruitYield: 2 },
+    { id: 'zinnia',     name: 'Zinnia',      cost: 24,  shape: 'burst',    stem: '#7FA582', leaf: '#9CC49E', flower: '#E8A5C4', center: '#8B2E3D', fruitYield: 3 },
+    { id: 'marigold',   name: 'Marigold',    cost: 25,  shape: 'burst',    stem: '#7FA582', leaf: '#9CC49E', flower: '#F2914B', center: '#C9622E', fruitYield: 3 },
+    { id: 'chrysanthemum', name: 'Chrysanthemum', cost: 26, shape: 'puff', stem: '#7FA582', leaf: '#8FB996', flower: '#F2A65A', center: '#8B2E3D', fruitYield: 3 },
+    { id: 'lavender',   name: 'Lavender',    cost: 28,  shape: 'spike',    stem: '#7A8F6B', leaf: '#8FB996', flower: '#B7AECD', center: '#8577B8', fruitYield: 3 },
+    { id: 'foxglove',   name: 'Foxglove',    cost: 29,  shape: 'spike',    stem: '#6F9973', leaf: '#7FAF6D', flower: '#E3A9A0', center: '#8B2E3D', fruitYield: 3 },
+    { id: 'sunflower',  name: 'Sunflower',   cost: 30,  shape: 'burstbig', stem: '#6B9A5A', leaf: '#7FAF6D', flower: '#F2C879', center: '#6E4A2E', fruitYield: 3 },
+    { id: 'dahlia',     name: 'Dahlia',      cost: 32,  shape: 'burstbig', stem: '#7FA582', leaf: '#8FB996', flower: '#D1495B', center: '#F2C879', fruitYield: 4 },
+    { id: 'rose',       name: 'Rose',        cost: 35,  shape: 'rose',     stem: '#5C7A52', leaf: '#7FA582', flower: '#D1495B', center: '#8B2E3D', fruitYield: 4 },
+    { id: 'peony',      name: 'Peony',       cost: 38,  shape: 'rose',     stem: '#7FA582', leaf: '#8FB996', flower: '#E8A5C4', center: '#F2C879', fruitYield: 4 },
+    { id: 'orchid',     name: 'Orchid',      cost: 42,  shape: 'star',     stem: '#6E63A3', leaf: '#8577B8', flower: '#C9BFE0', center: '#8B2E3D', fruitYield: 4 },
+    { id: 'lotus',      name: 'Lotus',       cost: 46,  shape: 'cup',      stem: '#5F8B7A', leaf: '#7FA582', flower: '#F5F1EC', center: '#F2C879', fruitYield: 4 },
+    { id: 'birdofparadise', name: 'Bird of Paradise', cost: 50, shape: 'burstbig', stem: '#6B9A5A', leaf: '#7FAF6D', flower: '#F2914B', center: '#7B8FD4', fruitYield: 5 },
+    { id: 'phoenixbloom', name: 'Phoenix Bloom', cost: 60, shape: 'rose',  stem: '#8B5E4A', leaf: '#C9622E', flower: '#F2914B', center: '#D1495B', fruitYield: 5 },
+    { id: 'starlily',   name: 'Starlily',    cost: 65,  shape: 'star',     stem: '#5F7F8B', leaf: '#7B8FD4', flower: '#F5F1EC', center: '#F2C879', fruitYield: 5 },
+    { id: 'goldenrod',  name: 'Goldenrod',   cost: 70,  shape: 'burstbig', stem: '#8B7A2E', leaf: '#C9622E', flower: '#F2C879', center: '#6E4A2E', fruitYield: 5 },
   ];
   function speciesById(id) { return speciesCatalog.find(s => s.id === id) || speciesCatalog[0]; }
 
@@ -1204,8 +1413,11 @@
       if (g >= 3) parts += `<path d="M50 ${97-h*0.75} C42 ${97-h*0.75} 40 ${97-h} 46 ${97-h*1.05}" stroke="${sp.leaf}" stroke-width="6" fill="none" stroke-linecap="round"/>`;
       if (g >= 4) parts += `<circle cx="50" cy="${97-h-2}" r="7" fill="${sp.flower}"/>`;
       if (g >= 5) parts += `<circle cx="50" cy="${97-h-2}" r="3.5" fill="${sp.center}"/>`;
+      if (g >= 6) parts += `<g opacity="0.9"><path d="M36 ${97-h*0.5} l3 6 6 3 -6 3 -3 6 -3-6 -6-3 6-3z" fill="#F5F1EC"/></g>`;
+      if (g >= 7) parts += `<circle cx="64" cy="${97-h*0.7}" r="4" fill="${sp.flower}" opacity="0.85"/>`;
+      if (g >= 8) parts = `<circle cx="50" cy="${97-h}" r="22" fill="#F2C879" opacity="0.3"/>` + parts;
     } else {
-      const stemTop = 97 - (10 + g * 14);
+      const stemTop = 97 - (10 + g * 9);
       parts += `<path d="M50 97 L50 ${stemTop}" stroke="${sp.stem}" stroke-width="4" stroke-linecap="round"/>`;
       if (g >= 1) parts += `<path d="M50 88 C38 85 32 76 36 66 C48 70 54 80 50 88 Z" fill="${sp.leaf}"/>`;
       if (g >= 2) parts += `<path d="M50 88 C62 85 68 76 64 66 C52 70 46 80 50 88 Z" fill="${sp.leaf}"/>`;
@@ -1245,6 +1457,17 @@
           parts += `<line x1="${cx}" y1="${cy}" x2="${cx+Math.cos(a)*13}" y2="${cy+Math.sin(a)*13}" stroke="#F5F1EC" stroke-width="1"/>`;
         }
       }
+      if (g >= 6) {
+        const cx = 50, cy = stemTop - 4;
+        parts += `<g opacity="0.9"><path d="M${cx-16} ${cy-2} l3 6 6 3 -6 3 -3 6 -3-6 -6-3 6-3z" fill="#F5F1EC"/></g>`;
+      }
+      if (g >= 7) {
+        const cx = 50, cy = stemTop - 4;
+        parts += `<g transform="translate(${cx+15},${cy+7})"><ellipse rx="5" ry="8" fill="${sp.flower}" opacity="0.9"/><circle r="2.5" fill="${sp.center}"/></g>`;
+      }
+      if (g >= 8) {
+        parts = `<circle cx="50" cy="${stemTop-4}" r="24" fill="#F2C879" opacity="0.3"/>` + parts;
+      }
     }
     if (g >= MAX_GROWTH && fruitReady > 0) {
       parts += `<circle cx="68" cy="60" r="6" fill="#D1495B"/><circle cx="72" cy="60" r="6" fill="#D1495B"/>`;
@@ -1275,7 +1498,7 @@
     if (typeIndex === currentPlantType) return;
     currentPlantType = typeIndex;
     const svg = document.getElementById('bloomSvg');
-    svg.innerHTML = plantTemplates[typeIndex];
+    svg.innerHTML = plantTemplates[typeIndex] + EXTRA_STAGE_MARKUP;
     const nameEl = document.getElementById('plantNameValue');
     if (nameEl) nameEl.textContent = plantNames[typeIndex];
   }
@@ -1293,10 +1516,17 @@
   let currentUser = null;
 
   // ---------- Garden / fruit state ----------
-  let garden = [];          // rows from supabase: {id, species, growth, fruit_ready}
+  let garden = [];          // rows from supabase: {id, species, growth, fruit_ready, watered_date}
   let fruitBalance = 0;
   let activeGrowId = null;  // id of the garden plant selected to grow today
+  let wateringCanUnlocked = false;
   const MYSTERY_BOX_COST = 40;
+  const WATERING_CAN_COST = 5;
+  const GARDEN_LIMIT = 20;
+
+  // ---------- Friends state ----------
+  let friendships = [];     // rows from supabase: {id, requester_id, addressee_id, status}
+  let friendProfiles = {};  // user_id -> { username }
 
   const moodsEl = document.getElementById('moods');
   const streakNum = document.getElementById('streakNum');
@@ -1365,8 +1595,18 @@
   function renderPlant(streak) {
     growthStages.forEach((id, i) => {
       const el = document.getElementById(id);
-      if (i < streak) el.classList.add('show');
-      else el.classList.remove('show');
+      if (!el) return;
+      const wasShown = el.classList.contains('show');
+      if (i < streak) {
+        el.classList.add('show');
+        if (!wasShown) {
+          el.classList.remove('grow-pulse');
+          void el.offsetWidth;
+          el.classList.add('grow-pulse');
+        }
+      } else {
+        el.classList.remove('show');
+      }
     });
   }
 
@@ -1467,13 +1707,20 @@
 
   // ---------- Profile (fruit balance) ----------
   async function loadProfile() {
-    let { data, error } = await sb.from('profiles').select('fruit_balance').eq('user_id', currentUser.id).maybeSingle();
+    let { data, error } = await sb.from('profiles').select('fruit_balance, watering_can_unlocked, username').eq('user_id', currentUser.id).maybeSingle();
     if (error) { console.error(error); return; }
     if (!data) {
-      const ins = await sb.from('profiles').insert({ user_id: currentUser.id, fruit_balance: 0 }).select('fruit_balance').single();
-      data = ins.data || { fruit_balance: 0 };
+      const meta = currentUser.user_metadata || {};
+      const ins = await sb.from('profiles').insert({
+        user_id: currentUser.id,
+        fruit_balance: 0,
+        watering_can_unlocked: false,
+        username: meta.username || currentUser.email.split('@')[0]
+      }).select('fruit_balance, watering_can_unlocked, username').single();
+      data = ins.data || { fruit_balance: 0, watering_can_unlocked: false, username: '' };
     }
     fruitBalance = data.fruit_balance || 0;
+    wateringCanUnlocked = !!data.watering_can_unlocked;
     renderFruitBalance();
   }
 
@@ -1494,15 +1741,17 @@
     await sb.from('profiles').update({ fruit_balance: fruitBalance }).eq('user_id', currentUser.id);
   }
 
+  const FRUIT_ICON_MINI = '<svg class="fruit-icon sm" viewBox="0 0 24 24"><path d="M12 22c-4.4 0-8-4.6-8-9.5C4 8 6.8 5 10 5c.9 0 1.7.2 2 .5.3-.3 1.1-.5 2-.5 3.2 0 6 3 6 7.5 0 4.9-3.6 9.5-8 9.5z" fill="var(--rose)"/><path d="M12 5c0-1.7.9-3 2.5-3.5" stroke="var(--sage-bright)" stroke-width="1.4" fill="none" stroke-linecap="round"/></svg>';
+
   // ---------- Garden (owned plants) ----------
   async function loadGarden() {
-    const { data, error } = await sb.from('garden_plants').select('id, species, growth, fruit_ready').eq('user_id', currentUser.id).order('created_at', { ascending: true });
+    const { data, error } = await sb.from('garden_plants').select('id, species, growth, fruit_ready, watered_date').eq('user_id', currentUser.id).order('created_at', { ascending: true });
     if (error) { console.error(error); return; }
     garden = data || [];
     if (!garden.length) {
       const { data: starter, error: sErr } = await sb.from('garden_plants')
         .insert({ user_id: currentUser.id, species: 'succulent', growth: 0, fruit_ready: 0 })
-        .select('id, species, growth, fruit_ready').single();
+        .select('id, species, growth, fruit_ready, watered_date').single();
       if (!sErr && starter) garden = [starter];
     }
     if (!garden.find(p => p.id === activeGrowId)) activeGrowId = garden[0] ? garden[0].id : null;
@@ -1529,25 +1778,32 @@
 
   function renderGarden() {
     const grid = document.getElementById('gardenGrid');
+    const countEl = document.getElementById('gardenCount');
+    if (countEl) countEl.textContent = `${garden.length}/${GARDEN_LIMIT}`;
     grid.innerHTML = '';
     if (!garden.length) {
       grid.innerHTML = '<div class="garden-empty">Your garden is empty.<br>Visit the Shop to plant something new.</div>';
       return;
     }
+    const today = dateStr(0);
     garden.forEach(p => {
       const sp = speciesById(p.species);
       const card = document.createElement('div');
       card.className = 'garden-card' + (p.id === activeGrowId ? ' active-grow' : '');
       const pct = Math.round((p.growth / MAX_GROWTH) * 100);
       const stageLabel = p.growth >= MAX_GROWTH ? 'Full bloom' : p.growth === 0 ? 'Just planted' : `Stage ${p.growth}/${MAX_GROWTH}`;
+      const canWater = wateringCanUnlocked && p.growth < MAX_GROWTH && p.watered_date !== today;
+      const wateredToday = wateringCanUnlocked && p.growth < MAX_GROWTH && p.watered_date === today;
       card.innerHTML = `
-        ${p.fruit_ready > 0 ? `<div class="fruit-badge">🍎 ${p.fruit_ready}</div>` : ''}
+        ${p.fruit_ready > 0 ? `<div class="fruit-badge">${FRUIT_ICON_MINI} ${p.fruit_ready}</div>` : ''}
         ${drawPlantIcon(sp, p.growth, p.fruit_ready)}
         <div class="gname">${sp.name}</div>
         <div class="gstage">${stageLabel}</div>
         <div class="gbar"><div class="gbar-fill" style="width:${pct}%"></div></div>
         <button class="select-grow-btn ${p.id === activeGrowId ? 'is-active' : ''}" data-id="${p.id}">${p.id === activeGrowId ? 'Growing' : 'Grow this'}</button>
-        ${p.fruit_ready > 0 ? `<button class="harvest-btn" data-id="${p.id}">Harvest 🍎 ${p.fruit_ready}</button>` : ''}
+        ${p.fruit_ready > 0 ? `<button class="harvest-btn" data-id="${p.id}">Harvest ${FRUIT_ICON_MINI} ${p.fruit_ready}</button>` : ''}
+        ${canWater ? `<button class="water-btn" data-id="${p.id}">💧 Water (2x growth)</button>` : ''}
+        ${wateredToday ? `<button class="water-btn" disabled>💧 Watered today</button>` : ''}
       `;
       card.querySelector('.select-grow-btn').addEventListener('click', () => {
         activeGrowId = p.id;
@@ -1556,6 +1812,8 @@
       });
       const hBtn = card.querySelector('.harvest-btn');
       if (hBtn) hBtn.addEventListener('click', () => harvestPlant(p.id));
+      const wBtn = card.querySelector('.water-btn:not([disabled])');
+      if (wBtn) wBtn.addEventListener('click', () => waterPlant(p.id));
       grid.appendChild(card);
     });
   }
@@ -1568,12 +1826,39 @@
     await sb.from('garden_plants').update({ fruit_ready: 0 }).eq('id', id);
     await setFruitBalance(fruitBalance + amount, true);
     renderGarden();
-    showToast(`Harvested ${amount} fruit 🍎`);
+    showToast(`Harvested ${amount} fruit`);
   }
 
+  // Watering can: once unlocked, waters one plant per day for double growth.
+  async function waterPlant(id) {
+    if (!wateringCanUnlocked) return;
+    const plant = garden.find(p => p.id === id);
+    if (!plant || plant.growth >= MAX_GROWTH) return;
+    const today = dateStr(0);
+    if (plant.watered_date === today) { showToast("Already watered today"); return; }
+    plant.growth = Math.min(MAX_GROWTH, plant.growth + 2);
+    plant.watered_date = today;
+    await sb.from('garden_plants').update({ growth: plant.growth, watered_date: today }).eq('id', id);
+    renderGarden();
+    renderGrowPicker();
+    showToast('Watered! Growth doubled 💧');
+  }
+
+  async function unlockWateringCan() {
+    if (wateringCanUnlocked) return;
+    if (fruitBalance < WATERING_CAN_COST) { showToast("Not enough fruit yet"); return; }
+    await setFruitBalance(fruitBalance - WATERING_CAN_COST, true);
+    wateringCanUnlocked = true;
+    await sb.from('profiles').update({ watering_can_unlocked: true }).eq('user_id', currentUser.id);
+    renderShop();
+    renderGarden();
+    showToast('Watering can unlocked 💧');
+  }
+  document.getElementById('wateringCanBtn').addEventListener('click', unlockWateringCan);
+
   // Called once per successful daily check-in: advances the selected
-  // garden plant's growth, or — once it's fully bloomed — adds a fruit
-  // to that plant ready for harvest.
+  // garden plant's growth, or — once it's fully bloomed — adds fruit
+  // (amount depends on species) to that plant ready for harvest.
   async function growActivePlant() {
     if (!activeGrowId) return;
     const plant = garden.find(p => p.id === activeGrowId);
@@ -1582,7 +1867,8 @@
       plant.growth += 1;
       await sb.from('garden_plants').update({ growth: plant.growth }).eq('id', plant.id);
     } else {
-      plant.fruit_ready += 1;
+      const sp = speciesById(plant.species);
+      plant.fruit_ready += (sp.fruitYield || 1);
       await sb.from('garden_plants').update({ fruit_ready: plant.fruit_ready }).eq('id', plant.id);
     }
     renderGarden();
@@ -1593,17 +1879,28 @@
   function renderShop() {
     document.getElementById('mysteryBoxCost').textContent = MYSTERY_BOX_COST;
     const mBtn = document.getElementById('mysteryBoxBtn');
-    mBtn.disabled = fruitBalance < MYSTERY_BOX_COST;
+    mBtn.disabled = fruitBalance < MYSTERY_BOX_COST || garden.length >= GARDEN_LIMIT;
+
+    const wBtn = document.getElementById('wateringCanBtn');
+    if (wBtn) {
+      if (wateringCanUnlocked) {
+        wBtn.outerHTML = '<span class="owned-badge">✓ Owned</span>';
+      } else {
+        wBtn.disabled = fruitBalance < WATERING_CAN_COST;
+      }
+    }
+
     const grid = document.getElementById('shopGrid');
     grid.innerHTML = '';
+    const full = garden.length >= GARDEN_LIMIT;
     speciesCatalog.filter(sp => sp.cost > 0).forEach(sp => {
       const card = document.createElement('div');
       card.className = 'shop-card';
       card.innerHTML = `
         ${drawPlantIcon(sp, 4, 0)}
         <div class="sname">${sp.name}</div>
-        <div class="scost"><span class="fb-icon">🍎</span> ${sp.cost}</div>
-        <button class="buy-btn" ${fruitBalance < sp.cost ? 'disabled' : ''}>Plant</button>
+        <div class="scost">${FRUIT_ICON_MINI} ${sp.cost} · yields ${sp.fruitYield}</div>
+        <button class="buy-btn" ${fruitBalance < sp.cost || full ? 'disabled' : ''}>${full ? 'Garden full' : 'Plant'}</button>
       `;
       card.querySelector('.buy-btn').addEventListener('click', () => buyPlant(sp.id));
       grid.appendChild(card);
@@ -1611,12 +1908,13 @@
   }
 
   async function buyPlant(speciesId) {
+    if (garden.length >= GARDEN_LIMIT) { showToast(`Garden is full (${GARDEN_LIMIT}/${GARDEN_LIMIT})`); return; }
     const sp = speciesById(speciesId);
     if (fruitBalance < sp.cost) { showToast("Not enough fruit yet"); return; }
     await setFruitBalance(fruitBalance - sp.cost, true);
     const { data, error } = await sb.from('garden_plants')
       .insert({ user_id: currentUser.id, species: sp.id, growth: 0, fruit_ready: 0 })
-      .select('id, species, growth, fruit_ready').single();
+      .select('id, species, growth, fruit_ready, watered_date').single();
     if (error) { console.error(error); showToast("Couldn't plant it — try again"); return; }
     garden.push(data);
     renderGarden();
@@ -1626,12 +1924,13 @@
   }
 
   async function buyMysteryBox() {
+    if (garden.length >= GARDEN_LIMIT) { showToast(`Garden is full (${GARDEN_LIMIT}/${GARDEN_LIMIT})`); return; }
     if (fruitBalance < MYSTERY_BOX_COST) { showToast("Not enough fruit yet"); return; }
     await setFruitBalance(fruitBalance - MYSTERY_BOX_COST, true);
     const pick = speciesCatalog[Math.floor(Math.random() * speciesCatalog.length)];
     const { data, error } = await sb.from('garden_plants')
       .insert({ user_id: currentUser.id, species: pick.id, growth: 0, fruit_ready: 0 })
-      .select('id, species, growth, fruit_ready').single();
+      .select('id, species, growth, fruit_ready, watered_date').single();
     if (error) { console.error(error); showToast("Couldn't open the box — try again"); return; }
     garden.push(data);
     renderGarden();
@@ -1673,6 +1972,93 @@
     showToast(messages[Math.min(current, messages.length) - 1]);
   });
 
+  // ---------- Friends ----------
+  async function loadFriends() {
+    const myId = currentUser.id;
+    const { data, error } = await sb.from('friendships')
+      .select('id, requester_id, addressee_id, status')
+      .or(`requester_id.eq.${myId},addressee_id.eq.${myId}`);
+    if (error) { console.error(error); renderFriends(); return; }
+    friendships = data || [];
+    const otherIds = Array.from(new Set(friendships.map(f => f.requester_id === myId ? f.addressee_id : f.requester_id)));
+    friendProfiles = {};
+    if (otherIds.length) {
+      const { data: profs, error: pErr } = await sb.from('profiles').select('user_id, username').in('user_id', otherIds);
+      if (!pErr) (profs || []).forEach(p => { friendProfiles[p.user_id] = p; });
+    }
+    renderFriends();
+  }
+
+  function renderFriends() {
+    const myId = currentUser.id;
+    const incoming = friendships.filter(f => f.status === 'pending' && f.addressee_id === myId);
+    const outgoing = friendships.filter(f => f.status === 'pending' && f.requester_id === myId);
+    const accepted = friendships.filter(f => f.status === 'accepted');
+
+    const reqSection = document.getElementById('friendRequestsSection');
+    if (incoming.length) {
+      reqSection.innerHTML = '<span class="friend-section-title" style="margin-top:0">Requests</span>' + incoming.map(f => {
+        const prof = friendProfiles[f.requester_id];
+        const name = prof ? prof.username : 'A gardener';
+        return `<div class="friend-card">
+          <div><div class="friend-name">${name}</div><div class="friend-sub">wants to be friends</div></div>
+          <div class="friend-actions">
+            <button class="friend-btn accept" data-id="${f.id}" data-act="accept">Accept</button>
+            <button class="friend-btn decline" data-id="${f.id}" data-act="decline">Decline</button>
+          </div>
+        </div>`;
+      }).join('');
+      reqSection.querySelectorAll('.friend-btn').forEach(btn => {
+        btn.addEventListener('click', () => respondFriendRequest(btn.dataset.id, btn.dataset.act));
+      });
+    } else {
+      reqSection.innerHTML = '';
+    }
+
+    const listSection = document.getElementById('friendsListSection');
+    const items = [];
+    accepted.forEach(f => {
+      const otherId = f.requester_id === myId ? f.addressee_id : f.requester_id;
+      const prof = friendProfiles[otherId];
+      items.push(`<div class="friend-card"><div><div class="friend-name">${prof ? prof.username : 'Gardener'}</div><div class="friend-sub">Friend</div></div></div>`);
+    });
+    outgoing.forEach(f => {
+      const prof = friendProfiles[f.addressee_id];
+      items.push(`<div class="friend-card"><div><div class="friend-name">${prof ? prof.username : 'Gardener'}</div><div class="friend-sub">Request sent</div></div></div>`);
+    });
+    listSection.innerHTML = items.length
+      ? items.join('')
+      : '<div class="friends-empty">No friends yet.<br>Add someone by their username above.</div>';
+  }
+
+  async function respondFriendRequest(id, act) {
+    if (act === 'accept') {
+      await sb.from('friendships').update({ status: 'accepted' }).eq('id', id);
+      showToast('Friend added!');
+    } else {
+      await sb.from('friendships').delete().eq('id', id);
+    }
+    loadFriends();
+  }
+
+  async function sendFriendRequest() {
+    const input = document.getElementById('friendUsernameInput');
+    const username = input.value.trim();
+    if (!username) return;
+    const { data: prof, error } = await sb.from('profiles').select('user_id, username').ilike('username', username).maybeSingle();
+    if (error || !prof) { showToast("Couldn't find that username"); return; }
+    if (prof.user_id === currentUser.id) { showToast("That's you!"); return; }
+    const exists = friendships.find(f => f.requester_id === prof.user_id || f.addressee_id === prof.user_id);
+    if (exists) { showToast("Already connected or pending"); return; }
+    const { error: insErr } = await sb.from('friendships')
+      .insert({ requester_id: currentUser.id, addressee_id: prof.user_id, status: 'pending' });
+    if (insErr) { console.error(insErr); showToast("Couldn't send request"); return; }
+    input.value = '';
+    showToast(`Friend request sent to ${prof.username}`);
+    loadFriends();
+  }
+  document.getElementById('friendAddBtn').addEventListener('click', sendFriendRequest);
+
   // Tab switching
   document.querySelectorAll('.tab').forEach(tab => {
     tab.addEventListener('click', () => {
@@ -1684,6 +2070,7 @@
       if (tab.dataset.view === 'viewYou') renderYou();
       if (tab.dataset.view === 'viewGarden') renderGarden();
       if (tab.dataset.view === 'viewShop') renderShop();
+      if (tab.dataset.view === 'viewFriends') loadFriends();
     });
   });
 
